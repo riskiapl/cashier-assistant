@@ -1,5 +1,5 @@
 import 'package:cashier_assistant/components/button.dart';
-import 'package:cashier_assistant/components/inputField.dart';
+import 'package:cashier_assistant/components/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
