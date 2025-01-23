@@ -1,4 +1,5 @@
 import 'package:cashier_assistant/components/button.dart';
+import 'package:cashier_assistant/components/icon_button.dart';
 import 'package:cashier_assistant/components/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,6 +21,8 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
                 height: 50,
@@ -100,7 +103,7 @@ class LoginPage extends StatelessWidget {
               ),
 
               const SizedBox(
-                height: 25,
+                height: 50,
               ),
 
               // or continue with
@@ -131,23 +134,50 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
 
+              const SizedBox(
+                height: 50,
+              ),
+
               // google & apple sign in
-              Row(children: [
-                IconButton(
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                CustomIconButton(
+                  icon: const FaIcon(
+                    FontAwesomeIcons.google,
+                    size: 40,
+                  ),
+                ),
+                const SizedBox(
+                  width: 25,
+                ),
+                CustomIconButton(
                   icon: const FaIcon(
                     FontAwesomeIcons.apple,
-                    size: 20,
+                    size: 40,
                   ),
-                  onPressed: () {},
-                )
+                ),
+              ]),
 
-                // const FaIcon(
-                //   FontAwesomeIcons.google,
-                //   size: 20,
-                // )
-              ])
+              const SizedBox(
+                height: 50,
+              ),
 
               // register option
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Not a member?',
+                    style: TextStyle(color: Colors.grey[700]),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    'Register now',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ],
+              )
             ],
           ),
         ),
