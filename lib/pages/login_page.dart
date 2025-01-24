@@ -3,6 +3,8 @@ import 'package:cashier_assistant/components/icon_button.dart';
 import 'package:cashier_assistant/components/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:cashier_assistant/pages/register_page.dart';
+import 'package:quickalert/quickalert.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -13,6 +15,17 @@ class LoginPage extends StatelessWidget {
 
   // handle button
   void handleSignIn() {}
+
+  void handleForgotPassword(BuildContext context) {
+    // Implement your forgot password logic here
+
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.info,
+      title: 'Forgot Password',
+      text: 'Password reset instructions have been sent to your email.',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,9 +95,12 @@ class LoginPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      'Forgot password?',
-                      style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                    GestureDetector(
+                      onTap: () => handleForgotPassword(context),
+                      child: Text(
+                        'Forgot password?',
+                        style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                      ),
                     ),
                   ],
                 ),
@@ -172,9 +188,17 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(
-                    'Register now',
-                    style: TextStyle(color: Colors.blue),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisterPage()),
+                      );
+                    },
+                    child: Text(
+                      'Register now',
+                      style: TextStyle(color: Colors.blue),
+                    ),
                   ),
                 ],
               )
