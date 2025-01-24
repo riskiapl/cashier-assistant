@@ -4,7 +4,8 @@ import 'package:cashier_assistant/components/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cashier_assistant/pages/register_page.dart';
-import 'package:quickalert/quickalert.dart';
+// import 'package:quickalert/quickalert.dart';
+import 'package:cashier_assistant/pages/verification_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -19,11 +20,16 @@ class LoginPage extends StatelessWidget {
   void handleForgotPassword(BuildContext context) {
     // Implement your forgot password logic here
 
-    QuickAlert.show(
-      context: context,
-      type: QuickAlertType.info,
-      title: 'Forgot Password',
-      text: 'Password reset instructions have been sent to your email.',
+    // QuickAlert.show(
+    //   context: context,
+    //   type: QuickAlertType.info,
+    //   title: 'Forgot Password',
+    //   text: 'Password reset instructions have been sent to your email.',
+    // );
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => VerificationPage()),
     );
   }
 
