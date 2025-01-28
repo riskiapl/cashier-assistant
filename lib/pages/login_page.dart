@@ -180,7 +180,7 @@ class LoginPage extends StatelessWidget {
               ]),
 
               const SizedBox(
-                height: 50,
+                height: 25,
               ),
 
               // register option
