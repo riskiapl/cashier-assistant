@@ -25,9 +25,11 @@ class CodeInput extends StatelessWidget {
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
             borderSide: BorderSide(color: Colors.grey[400]!, width: 2),
           ),
           focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
             borderSide: BorderSide(color: Colors.grey[600]!, width: 2),
           ),
           counterText: '',

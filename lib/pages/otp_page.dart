@@ -1,6 +1,7 @@
 import 'package:cashier_assistant/components/code_input.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:cashier_assistant/pages/login_page.dart';
 
 class OtpPage extends StatelessWidget {
   OtpPage({super.key});
@@ -36,7 +37,7 @@ class OtpPage extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 35,
-                  backgroundColor: Colors.green,
+                  backgroundColor: Colors.grey[700],
                   child: Icon(
                     Icons.gpp_good,
                     size: 50,
@@ -56,7 +57,7 @@ class OtpPage extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: Text(
-                    'Enter the verification code we have sent to your email at r***7@gmail.com.',
+                    'Please enter the verification code sent to your email address r***7@gmail.com.',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey[600],
@@ -114,6 +115,10 @@ class OtpPage extends StatelessWidget {
                       onTap: () {
                         // Implement your resend logic here
                         debugPrint('resend button tapped');
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
                       },
                       child: Text(
                         'Resend',
