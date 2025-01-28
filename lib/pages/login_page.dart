@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cashier_assistant/pages/register_page.dart';
 // import 'package:quickalert/quickalert.dart';
-import 'package:cashier_assistant/pages/verification_page.dart';
+import 'package:cashier_assistant/pages/otp_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => VerificationPage()),
+      MaterialPageRoute(builder: (context) => OtpPage()),
     );
   }
 
