@@ -15,7 +15,7 @@ android {
     namespace = "com.example.cashier_assistant"
     compileSdk = flutter.compileSdkVersion
     compileSdkVersion = flutter.compileSdkVersion
-    buildToolsVersion = flutter.buildToolsVersion
+    buildToolsVersion = "33.0.0"
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
