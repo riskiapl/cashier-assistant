@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 50,
+                height: 25,
               ),
 
               // logo
@@ -60,7 +60,7 @@ class LoginPage extends StatelessWidget {
               ),
 
               const SizedBox(
-                height: 50,
+                height: 25,
               ),
 
               // welcome text
@@ -125,7 +125,7 @@ class LoginPage extends StatelessWidget {
               ),
 
               const SizedBox(
-                height: 50,
+                height: 25,
               ),
 
               // or continue with
@@ -157,7 +157,7 @@ class LoginPage extends StatelessWidget {
               ),
 
               const SizedBox(
-                height: 50,
+                height: 25,
               ),
 
               // google & apple sign in
