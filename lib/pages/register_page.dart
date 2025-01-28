@@ -68,7 +68,7 @@ class RegisterPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(
-                  height: 50,
+                  height: 25,
                 ),
 
                 // logo
@@ -84,7 +84,7 @@ class RegisterPage extends StatelessWidget {
                 ),
 
                 const SizedBox(
-                  height: 50,
+                  height: 25,
                 ),
 
                 // welcome text
@@ -150,7 +150,7 @@ class RegisterPage extends StatelessWidget {
                 ),
 
                 const SizedBox(
-                  height: 50,
+                  height: 25,
                 ),
 
                 // or login
