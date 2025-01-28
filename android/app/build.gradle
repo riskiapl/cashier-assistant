@@ -6,9 +6,9 @@ plugins {
 }
 
 def keyStoreProperties = new Properties()
-def keyStoreProperties = rootProject.file("key.properties")
-if (keyStoreProperties.exists()) {
-    keyStoreProperties.load(new FileInputStream(keyStoreProperties))
+def keyStorePropertiesFile = rootProject.file("key.properties")
+if (keyStorePropertiesFile.exists()) {
+    keyStoreProperties.load(new FileInputStream(keyStorePropertiesFile))
 }
 
 android {
