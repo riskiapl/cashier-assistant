@@ -61,124 +61,126 @@ class RegisterPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 25,
-                ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 25,
+                  ),
 
-                // logo
-                const Icon(
-                  Icons.point_of_sale,
-                  size: 100,
-                  color: Colors.black,
-                ),
+                  // logo
+                  const Icon(
+                    Icons.point_of_sale,
+                    size: 100,
+                    color: Colors.black,
+                  ),
 
-                Text(
-                  'Cashier Assistant',
-                  style: TextStyle(color: Colors.grey[700], fontSize: 18),
-                ),
+                  Text(
+                    'Cashier Assistant',
+                    style: TextStyle(color: Colors.grey[700], fontSize: 18),
+                  ),
 
-                const SizedBox(
-                  height: 25,
-                ),
+                  const SizedBox(
+                    height: 25,
+                  ),
 
-                // welcome text
-                Text(
-                  'Create a new account',
-                  style: TextStyle(color: Colors.grey[700], fontSize: 16),
-                ),
+                  // welcome text
+                  Text(
+                    'Create a new account',
+                    style: TextStyle(color: Colors.grey[700], fontSize: 16),
+                  ),
 
-                const SizedBox(
-                  height: 25,
-                ),
+                  const SizedBox(
+                    height: 25,
+                  ),
 
-                // email text field
-                InputField(
-                  controller: emailController,
-                  hintText: 'Email',
-                  obscureText: false,
-                ),
+                  // email text field
+                  InputField(
+                    controller: emailController,
+                    hintText: 'Email',
+                    obscureText: false,
+                  ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                  const SizedBox(
+                    height: 10,
+                  ),
 
-                // username text field
-                InputField(
-                  controller: usernameController,
-                  hintText: 'Username',
-                  obscureText: false,
-                ),
+                  // username text field
+                  InputField(
+                    controller: usernameController,
+                    hintText: 'Username',
+                    obscureText: false,
+                  ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                  const SizedBox(
+                    height: 10,
+                  ),
 
-                // password text field
-                InputField(
-                  controller: passwordController,
-                  hintText: 'Password',
-                  obscureText: true,
-                ),
+                  // password text field
+                  InputField(
+                    controller: passwordController,
+                    hintText: 'Password',
+                    obscureText: true,
+                  ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                  const SizedBox(
+                    height: 10,
+                  ),
 
-                // confirm password text field
-                InputField(
-                  controller: confirmPasswordController,
-                  hintText: 'Confirm Password',
-                  obscureText: true,
-                ),
+                  // confirm password text field
+                  InputField(
+                    controller: confirmPasswordController,
+                    hintText: 'Confirm Password',
+                    obscureText: true,
+                  ),
 
-                const SizedBox(
-                  height: 25,
-                ),
+                  const SizedBox(
+                    height: 25,
+                  ),
 
-                // register button
-                CustomButton(
-                  text: 'Register',
-                  onTap: () => handleRegister(context),
-                  backgroundColor: Colors.black,
-                  textColor: Colors.white,
-                ),
+                  // register button
+                  CustomButton(
+                    text: 'Register',
+                    onTap: () => handleRegister(context),
+                  ),
 
-                const SizedBox(
-                  height: 25,
-                ),
+                  const SizedBox(
+                    height: 25,
+                  ),
 
-                // or login
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Already a member?',
-                      style: TextStyle(color: Colors.grey[700]),
-                    ),
-                    SizedBox(width: 5),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
-                      },
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                          color: Colors.blue,
+                  // or login
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Already a member?',
+                        style: TextStyle(color: Colors.grey[700]),
+                      ),
+                      SizedBox(width: 5),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()),
+                          );
+                        },
+                        child: Text(
+                          'Login',
+                          style: TextStyle(
+                            color: Colors.blue,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

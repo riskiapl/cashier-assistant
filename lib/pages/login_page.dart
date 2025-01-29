@@ -15,7 +15,10 @@ class LoginPage extends StatelessWidget {
   final passwordController = TextEditingController();
 
   // handle button
-  void handleSignIn() {}
+  void handleSignIn() {
+    debugPrint('Username: ${usernameController.text}');
+    debugPrint('Password: ${passwordController.text}');
+  }
 
   void handleForgotPassword(BuildContext context) {
     // Implement your forgot password logic here
@@ -38,67 +41,67 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 25,
-              ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 25,
+                ),
 
-              // logo
-              const Icon(
-                Icons.point_of_sale,
-                size: 100,
-                color: Colors.black,
-              ),
+                // logo
+                const Icon(
+                  Icons.point_of_sale,
+                  size: 100,
+                  color: Colors.black,
+                ),
 
-              Text(
-                'Cashier Assistant',
-                style: TextStyle(color: Colors.grey[700], fontSize: 18),
-              ),
+                Text(
+                  'Cashier Assistant',
+                  style: TextStyle(color: Colors.grey[700], fontSize: 18),
+                ),
 
-              const SizedBox(
-                height: 25,
-              ),
+                const SizedBox(
+                  height: 25,
+                ),
 
-              // welcome text
-              Text(
-                'Welcome back, you\'ve been missed!',
-                style: TextStyle(color: Colors.grey[700], fontSize: 16),
-              ),
+                // welcome text
+                Text(
+                  'Welcome back, you\'ve been missed!',
+                  style: TextStyle(color: Colors.grey[700], fontSize: 16),
+                ),
 
-              const SizedBox(
-                height: 25,
-              ),
+                const SizedBox(
+                  height: 25,
+                ),
 
-              // username text field
-              InputField(
-                controller: usernameController,
-                hintText: 'Username or Email',
-                obscureText: false,
-              ),
+                // username text field
+                InputField(
+                  controller: usernameController,
+                  hintText: 'Username or Email',
+                  obscureText: false,
+                ),
 
-              const SizedBox(
-                height: 10,
-              ),
+                const SizedBox(
+                  height: 10,
+                ),
 
-              // password text field
-              InputField(
-                controller: passwordController,
-                hintText: 'Password',
-                obscureText: true,
-              ),
+                // password text field
+                InputField(
+                  controller: passwordController,
+                  hintText: 'Password',
+                  obscureText: true,
+                ),
 
-              const SizedBox(
-                height: 10,
-              ),
+                const SizedBox(
+                  height: 10,
+                ),
 
-              // forgot password
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Row(
+                // forgot password
+                Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     GestureDetector(
@@ -110,28 +113,23 @@ class LoginPage extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
 
-              const SizedBox(
-                height: 25,
-              ),
+                const SizedBox(
+                  height: 25,
+                ),
 
-              // sign in button
-              CustomButton(
-                text: 'Sign In',
-                onTap: handleSignIn,
-                backgroundColor: Colors.black,
-                textColor: Colors.white,
-              ),
+                // sign in button
+                CustomButton(
+                  text: 'Sign In',
+                  onTap: handleSignIn,
+                ),
 
-              const SizedBox(
-                height: 25,
-              ),
+                const SizedBox(
+                  height: 25,
+                ),
 
-              // or continue with
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Row(
+                // or continue with
+                Row(
                   children: [
                     Expanded(
                       child: Divider(
@@ -154,61 +152,62 @@ class LoginPage extends StatelessWidget {
                     )
                   ],
                 ),
-              ),
 
-              const SizedBox(
-                height: 25,
-              ),
-
-              // google & apple sign in
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                CustomIconButton(
-                  icon: const FaIcon(
-                    FontAwesomeIcons.google,
-                    size: 40,
-                  ),
-                ),
                 const SizedBox(
-                  width: 25,
+                  height: 25,
                 ),
-                CustomIconButton(
-                  icon: const FaIcon(
-                    FontAwesomeIcons.apple,
-                    size: 40,
-                  ),
-                ),
-              ]),
 
-              const SizedBox(
-                height: 25,
-              ),
-
-              // register option
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Not a member?',
-                    style: TextStyle(color: Colors.grey[700]),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()),
-                      );
-                    },
-                    child: Text(
-                      'Register now',
-                      style: TextStyle(color: Colors.blue),
+                // google & apple sign in
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  CustomIconButton(
+                    icon: const FaIcon(
+                      FontAwesomeIcons.google,
+                      size: 40,
                     ),
                   ),
-                ],
-              )
-            ],
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  CustomIconButton(
+                    icon: const FaIcon(
+                      FontAwesomeIcons.apple,
+                      size: 40,
+                    ),
+                  ),
+                ]),
+
+                const SizedBox(
+                  height: 25,
+                ),
+
+                // register option
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Not a member?',
+                      style: TextStyle(color: Colors.grey[700]),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterPage()),
+                        );
+                      },
+                      child: Text(
+                        'Register now',
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
