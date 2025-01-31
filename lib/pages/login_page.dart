@@ -4,7 +4,7 @@ import 'package:cashier_assistant/components/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cashier_assistant/pages/register_page.dart';
-import 'package:cashier_assistant/pages/otp_page.dart';
+// import 'package:cashier_assistant/pages/otp_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
