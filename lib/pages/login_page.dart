@@ -7,6 +7,9 @@ import 'package:cashier_assistant/pages/register_page.dart';
 // import 'package:cashier_assistant/pages/otp_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
+import '../services/auth_services.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -15,20 +18,46 @@ class LoginPage extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final storage = FlutterSecureStorage();
+  final AuthServices authServices = AuthServices();
 
   // handle button
-  Future<void> handleSignIn() async {
+  Future<void> handleSignIn(context) async {
     debugPrint('Username: ${usernameController.text}');
     debugPrint('Password: ${passwordController.text}');
 
-    // Generate a fake JWT token
+    final res = await authServices.login(
+      usernameController.text,
+      passwordController.text,
+    );
 
-    String fakeJwtToken =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzM4MjMwNzU3LCJleHAiOjE3MzgzMTcxNTd9.jqXFAe8PKmiWGq_n8VVDXntARuvBDNp-yR90iVpNEv8';
+    debugPrint('Response: $res');
 
-    await storage.write(key: 'auth_token', value: fakeJwtToken);
+    if (res['status'] == 'success') {
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.success,
+        title: 'Success',
+        text: res['message'],
+      );
 
-    debugPrint('Fake JWT Token: $fakeJwtToken');
+      await storage.write(key: 'auth_token', value: res['token']);
+    } else if (res['status'] == 'failed') {
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.error,
+        title: 'Login Failed',
+        text: res['message'],
+      );
+    }
+
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => OtpPage()),
+    // );
+
+    // await storage.write(key: 'auth_token', value: fakeJwtToken);
+
+    // debugPrint('Fake JWT Token: $fakeJwtToken');
   }
 
   Future<void> handleForgotPassword(BuildContext context) async {
@@ -143,7 +172,7 @@ class LoginPage extends StatelessWidget {
                 // sign in button
                 CustomButton(
                   text: 'Sign In',
-                  onTap: handleSignIn,
+                  onTap: () => handleSignIn(context),
                 ),
 
                 const SizedBox(
