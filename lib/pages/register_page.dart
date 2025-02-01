@@ -3,6 +3,7 @@ import 'package:cashier_assistant/components/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:cashier_assistant/pages/login_page.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:cashier_assistant/services/auth_services.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({super.key});
@@ -12,9 +13,10 @@ class RegisterPage extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final AuthServices authServices = AuthServices();
 
   // handle button
-  void handleRegister(BuildContext context) {
+  Future<void> handleRegister(BuildContext context) async {
     // input validation
     if (!isValidEmail(emailController.text) ||
         usernameController.text.isEmpty ||
@@ -39,12 +41,33 @@ class RegisterPage extends StatelessWidget {
       return;
     }
 
-    QuickAlert.show(
-      context: context,
-      type: QuickAlertType.success,
-      title: 'Registration Successful',
-      text: 'Your account has been created successfully.',
+    final res = await authServices.register(
+      usernameController.text,
+      emailController.text,
+      passwordController.text,
     );
+
+    if (res['status'] == 'success') {
+      if (context.mounted) {
+        QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          title: 'Registration Successful',
+          text: res['message'],
+        );
+      }
+    } else if (res['status'] == 'failed') {
+      if (context.mounted) {
+        QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          title: 'Registration Failed',
+          text: res['message'],
+        );
+      }
+    }
+
+    debugPrint('Response: $res');
   }
 
   bool isValidEmail(String email) {
@@ -104,6 +127,7 @@ class RegisterPage extends StatelessWidget {
                     controller: emailController,
                     hintText: 'Email',
                     obscureText: false,
+                    keyboardType: TextInputType.emailAddress,
                   ),
 
                   const SizedBox(

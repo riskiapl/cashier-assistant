@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
-  final controller;
+  final TextEditingController controller;
   final String hintText;
   final bool obscureText;
+  final TextInputType keyboardType;
 
   const InputField(
       {super.key,
       required this.controller,
       required this.hintText,
-      required this.obscureText});
+      required this.obscureText,
+      this.keyboardType = TextInputType.text});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
       obscureText: obscureText,
+      keyboardType: keyboardType,
       decoration: InputDecoration(
         enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white)),

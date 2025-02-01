@@ -36,7 +36,7 @@ class LoginPage extends StatelessWidget {
       QuickAlert.show(
         context: context,
         type: QuickAlertType.success,
-        title: 'Success',
+        title: 'Login Success',
         text: res['message'],
       );
 
