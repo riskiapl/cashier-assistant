@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cashier_assistant/pages/login_page.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:cashier_assistant/services/auth_services.dart';
+import 'package:cashier_assistant/pages/otp_page.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({super.key});
@@ -48,12 +49,19 @@ class RegisterPage extends StatelessWidget {
     );
 
     if (res['status'] == 'success') {
+      // if (context.mounted) {
+      //   QuickAlert.show(
+      //     context: context,
+      //     type: QuickAlertType.success,
+      //     title: 'Registration Successful',
+      //     text: res['message'],
+      //   );
+      // }
+
       if (context.mounted) {
-        QuickAlert.show(
-          context: context,
-          type: QuickAlertType.success,
-          title: 'Registration Successful',
-          text: res['message'],
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => OtpPage()),
         );
       }
     } else if (res['status'] == 'failed') {
