@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CodeInput extends StatelessWidget {
-  CodeInput({
-    super.key,
-  });
+  final TextEditingController controller;
 
-  // final value = TextEditingController();
+  const CodeInput({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +11,11 @@ class CodeInput extends StatelessWidget {
       height: 64,
       width: 60,
       child: TextFormField(
-        // controller: value,
+        controller: controller,
         onChanged: (val) {
           if (val.length == 1) {
             FocusScope.of(context).nextFocus();
           }
-          // if (value.isEmpty) {
-          //   FocusScope.of(context).previousFocus();
-          // }
-          debugPrint('Current value: $val');
         },
         keyboardType: TextInputType.number,
         autofocus: true,

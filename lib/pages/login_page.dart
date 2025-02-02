@@ -4,9 +4,9 @@ import 'package:cashier_assistant/components/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cashier_assistant/pages/register_page.dart';
-// import 'package:cashier_assistant/pages/otp_page.dart';
+import 'package:cashier_assistant/pages/otp_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
+// import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import '../services/auth_services.dart';
@@ -70,21 +70,21 @@ class LoginPage extends StatelessWidget {
     //   text: 'Password reset instructions have been sent to your email.',
     // );
 
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => OtpPage()),
-    // );
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => OtpPage()),
+    );
 
-    String? token = await storage.read(key: 'auth_token');
-    if (token != null) {
-      final decodedToken = JwtDecoder.decode(token);
+    // String? token = await storage.read(key: 'auth_token');
+    // if (token != null) {
+    //   final decodedToken = JwtDecoder.decode(token);
 
-      debugPrint('Decoded Token: $decodedToken');
-      DateTime expiryDate =
-          DateTime.fromMillisecondsSinceEpoch(decodedToken['exp'] * 1000);
-      debugPrint(
-          'Token Expiry Date: ${expiryDate.toLocal().toString().split('.')[0]}');
-    }
+    //   debugPrint('Decoded Token: $decodedToken');
+    //   DateTime expiryDate =
+    //       DateTime.fromMillisecondsSinceEpoch(decodedToken['exp'] * 1000);
+    //   debugPrint(
+    //       'Token Expiry Date: ${expiryDate.toLocal().toString().split('.')[0]}');
+    // }
   }
 
   @override

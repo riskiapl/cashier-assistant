@@ -1,7 +1,9 @@
 import 'package:cashier_assistant/components/code_input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:cashier_assistant/pages/login_page.dart';
+import 'package:cashier_assistant/components/button.dart';
 
 class OtpPage extends StatelessWidget {
   OtpPage({super.key});
@@ -10,18 +12,29 @@ class OtpPage extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
+  final otp1 = TextEditingController();
+  final otp2 = TextEditingController();
+  final otp3 = TextEditingController();
+  final otp4 = TextEditingController();
+  final otp5 = TextEditingController();
+
   // handle button
   void handleSignIn() {}
 
-  void handleForgotPassword(BuildContext context) {
-    // Implement your forgot password logic here
+  void handlePaste(BuildContext context, String pastedText) {
+    if (pastedText.length == 5 &&
+        RegExp(r'^[a-zA-Z0-9]+$').hasMatch(pastedText)) {
+      otp1.text = pastedText[0];
+      otp2.text = pastedText[1];
+      otp3.text = pastedText[2];
+      otp4.text = pastedText[3];
+      otp5.text = pastedText[4];
 
-    QuickAlert.show(
-      context: context,
-      type: QuickAlertType.info,
-      title: 'Forgot Password',
-      text: 'Password reset instructions have been sent to your email.',
-    );
+      FocusScope.of(context).requestFocus(FocusNode());
+    } else {
+      // Handle invalid paste text
+      debugPrint('Invalid paste text');
+    }
   }
 
   @override
@@ -70,34 +83,48 @@ class OtpPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CodeInput(),
-                      CodeInput(),
-                      CodeInput(),
-                      CodeInput(),
-                      CodeInput()
+                      CodeInput(controller: otp1),
+                      CodeInput(controller: otp2),
+                      CodeInput(controller: otp3),
+                      CodeInput(controller: otp4),
+                      CodeInput(controller: otp5),
                     ],
                   ),
                 ),
-                SizedBox(height: 25),
-                ElevatedButton(
-                  onPressed: () {
-                    // Implement your verification logic here
-                    debugPrint('verify button tapped');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[900],
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                    minimumSize: Size(double.infinity, 50), // Set width to 100%
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                  ),
-                  child: Text(
-                    'Verify',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
+                SizedBox(height: 5),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      // Implement your paste logic here
+                      Clipboard.getData('text/plain').then((clipboardContent) {
+                        if (clipboardContent != null && context.mounted) {
+                          handlePaste(context, clipboardContent.text ?? '');
+                        }
+                      });
+                    },
+                    child: Text(
+                      'Paste',
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                        fontSize: 12,
+                      ),
                     ),
                   ),
+                ),
+                SizedBox(height: 20),
+                CustomButton(
+                  text: 'Verify',
+                  onTap: () {
+                    // Implement your verification logic here
+                    QuickAlert.show(
+                      context: context,
+                      type: QuickAlertType.success,
+                      title: 'Verification Successful',
+                      text:
+                          'You have successfully verified your email address.',
+                    );
+                  },
                 ),
                 SizedBox(height: 25),
                 Row(
