@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:cashier_assistant/pages/login_page.dart';
 import 'package:cashier_assistant/components/button.dart';
+import 'package:cashier_assistant/services/auth_services.dart';
 
 class OtpPage extends StatelessWidget {
   OtpPage({super.key});
@@ -17,6 +18,8 @@ class OtpPage extends StatelessWidget {
   final otp3 = TextEditingController();
   final otp4 = TextEditingController();
   final otp5 = TextEditingController();
+
+  final AuthServices authServices = AuthServices();
 
   // handle button
   void handleSignIn() {}
@@ -34,6 +37,56 @@ class OtpPage extends StatelessWidget {
     } else {
       // Handle invalid paste text
       debugPrint('Invalid paste text');
+    }
+  }
+
+  void verifyOtp(BuildContext context) async {
+    String otpCode = otp1.text + otp2.text + otp3.text + otp4.text + otp5.text;
+    String email = 'riski97@gmail.com';
+
+    if (otpCode.length == 5) {
+      try {
+        Map<String, dynamic> isVerified =
+            await authServices.verifyOtp(email, otpCode);
+        if (isVerified['status'] == 'success') {
+          if (context.mounted) {
+            QuickAlert.show(
+              context: context,
+              type: QuickAlertType.success,
+              title: 'Verification Successful',
+              text: isVerified['message'],
+            );
+          }
+        } else if (isVerified['status'] == 'failed') {
+          if (context.mounted) {
+            QuickAlert.show(
+              context: context,
+              type: QuickAlertType.error,
+              title: 'Verification Failed',
+              text: isVerified['message'],
+            );
+          }
+        }
+      } catch (e) {
+        if (context.mounted) {
+          QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            title: 'Error',
+            text:
+                'An error occurred while verifying the OTP. Please try again.',
+          );
+        }
+      }
+    } else {
+      if (context.mounted) {
+        QuickAlert.show(
+          context: context,
+          type: QuickAlertType.warning,
+          title: 'Invalid OTP',
+          text: 'Please enter a valid 5-digit OTP code.',
+        );
+      }
     }
   }
 

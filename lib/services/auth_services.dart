@@ -32,4 +32,43 @@ class AuthServices {
 
     return jsonDecode(response.body);
   }
+
+  Future<bool> isUsernameAvailable(String username) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/check-username/$username'),
+      headers: DemoData.defaultHeaders,
+    );
+
+    final responseBody = jsonDecode(response.body);
+    if (responseBody['status'] == 'success') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<Map<String, dynamic>> verifyOtp(String email, String otpCode) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/verify-otp'),
+      headers: DemoData.defaultHeaders,
+      body: jsonEncode(<String, String>{
+        'email': email,
+        'otpCode': otpCode,
+      }),
+    );
+
+    return jsonDecode(response.body);
+  }
+
+  Future<Map<String, dynamic>> resendOtp(String email) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/resend-otp'),
+      headers: DemoData.defaultHeaders,
+      body: jsonEncode(<String, String>{
+        'email': email,
+      }),
+    );
+
+    return jsonDecode(response.body);
+  }
 }
