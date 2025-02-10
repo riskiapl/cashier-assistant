@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'pages/login_page.dart';
+// import 'pages/login_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'pages/forget_password_page.dart';
 
 void main() {
   runApp(
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      // home: LoginPage(),
+      home: ForgetPasswordPage(),
     );
   }
 }

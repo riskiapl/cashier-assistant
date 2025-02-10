@@ -32,4 +32,16 @@ class AuthServices {
 
     return jsonDecode(response.body);
   }
+
+  Future<Map<String, dynamic>> sendOtp(String email) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/send-otp'),
+      headers: DemoData.defaultHeaders,
+      body: jsonEncode(<String, String>{
+        'email': email,
+      }),
+    );
+
+    return jsonDecode(response.body);
+  }
 }
