@@ -8,7 +8,7 @@ import 'package:cashier_assistant/pages/otp_page.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  const RegisterPage({super.key});
 
   @override
   _RegisterPageState createState() => _RegisterPageState();
